@@ -1,7 +1,7 @@
 <?php
 require_once "required/session.php";
 require_once "required/sql.php";
-const PAGE_TITLE = "Escrow Guarantee P2P - Register";
+const PAGE_TITLE = "University Transcript Tracking System - Register";
 require_once "func/register.php";
 include_once "included/head.php";
 ?>
@@ -41,7 +41,7 @@ include_once "included/head.php";
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center mx-auto">
             <h1 class="text-white mb-2 mt-5">Welcome to <?= PAGE_TITLE ?>!</h1>
-            <p class="text-lead text-white">Our escrow service ensures safe and secure transactions for both buyers and sellers. No more worries about online deals.</p>
+            <p class="text-lead text-white">Streamline your transcript tracking process with our secure and efficient system, designed to make your life easier.</p>
           </div>
         </div>
       </div>

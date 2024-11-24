@@ -1,7 +1,7 @@
 <?php
 require_once "required/session.php";
 require_once "required/sql.php";
-const PAGE_TITLE = "Escrow Guarantee P2P - Login";
+const PAGE_TITLE = "University Transcript Tracking System - Login";
 
 require_once "func/login.php";
 require_once "included/head.php";
@@ -79,8 +79,8 @@ require_once "included/head.php";
               <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
           background-size: cover;">
                 <span class="mask bg-gradient-primary opacity-6"></span>
-                <h4 class="mt-5 text-white font-weight-bolder position-relative">"Secure Your Transactions with Confidence"</h4>
-                <p class="text-white position-relative">Our escrow service ensures safe and secure transactions for both buyers and sellers. No more worries about online deals.</p>
+                <h4 class="mt-5 text-white font-weight-bolder position-relative">"Streamline Your Academic Records with Ease"</h4>
+                <p class="text-white position-relative">Our system ensures secure and efficient management of university transcripts for students, administrators, and institutions.</p>nstitutions.</p>
               </div>
             </div>
           </div>
