@@ -30,92 +30,29 @@
                                     $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
                                     $file_name = end($file_path);
                                     $route = explode(".", $file_name)[0];
-                                    if ($route === 'create-new-transaction') {
+                                    if ($route === 'profile') {
                                         echo 'active';
                                     }
-                                    ?>" href="create-new-transaction">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-compass-04 text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Create New Transactions</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?php
-                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
-                                    $file_name = end($file_path);
-                                    $route = explode(".", $file_name)[0];
-                                    if ($route === 'transactions') {
-                                        echo 'active';
-                                    }
-                                    ?>" href="transactions">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-money-coins text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Transactions</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link <?php
-                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
-                                    $file_name = end($file_path);
-                                    $route = explode(".", $file_name)[0];
-                                    if ($route === 'kyc') {
-                                        echo 'active';
-                                    }
-                                    ?>" href="kyc">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-paper-diploma text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">KYC</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link <?php
-                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
-                                    $file_name = end($file_path);
-                                    $route = explode(".", $file_name)[0];
-                                    if ($route === 'withdraw') {
-                                        echo 'active';
-                                    }
-                                    ?>" href="withdraw">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-diamond text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Withdraw</span>
-                </a>
-            </li>
-
-            <!-- <li class="nav-item">
-                <a class="nav-link <?php
-                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
-                                    $file_name = end($file_path);
-                                    $route = explode(".", $file_name)[0];
-                                    if ($route === 'messages') {
-                                        echo 'active';
-                                    }
-                                    ?>" href="messages">
+                                    ?>" href="profile">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-user-run text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Messages</span>
+                    <span class="nav-link-text ms-1">Profile</span>
                 </a>
-            </li> -->
-            <!-- <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="nav-link <?php
                                     $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
                                     $file_name = end($file_path);
                                     $route = explode(".", $file_name)[0];
-                                    if ($route === 'goals') {
+                                    if ($route === 'apply-for-transcript') {
                                         echo 'active';
                                     }
-                                    ?>" href="goals">
+                                    ?>" href="apply-for-transcript">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
+                        <i class="ni ni-paper-diploma text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Goals</span>
+                    <span class="nav-link-text ms-1">Apply for Transcript</span>
                 </a>
             </li>
 
@@ -124,31 +61,16 @@
                                     $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
                                     $file_name = end($file_path);
                                     $route = explode(".", $file_name)[0];
-                                    if ($route === 'nutrition') {
+                                    if ($route === 'transcripts') {
                                         echo 'active';
                                     }
-                                    ?>" href="nutrition">
+                                    ?>" href="transcripts">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-satisfied text-success text-sm opacity-10"></i>
+                        <i class="ni ni-books text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Nutrition</span>
+                    <span class="nav-link-text ms-1">Transcripts</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link <?php
-                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
-                                    $file_name = end($file_path);
-                                    $route = explode(".", $file_name)[0];
-                                    if ($route === 'activities') {
-                                        echo 'active';
-                                    }
-                                    ?>" href="activities">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Activities</span>
-                </a>
-            </li> -->
         </ul>
     </div>
     <div class="sidenav-footer mx-3 ">
