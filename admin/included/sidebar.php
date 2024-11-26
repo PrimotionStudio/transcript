@@ -7,7 +7,7 @@
         </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse w-auto h-75" id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse  w-auto h-75 " id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link <?php
@@ -30,122 +30,60 @@
                                     $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
                                     $file_name = end($file_path);
                                     $route = explode(".", $file_name)[0];
-                                    if ($route === 'users') {
+                                    if ($route === 'profile') {
                                         echo 'active';
                                     }
-                                    ?>" href="users">
+                                    ?>" href="profile">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-user-run text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Users</span>
+                    <span class="nav-link-text ms-1">Profile</span>
                 </a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link <?php
-                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
-                                    $file_name = end($file_path);
-                                    $route = explode(".", $file_name)[0];
-                                    if ($route === 'transactions') {
-                                        echo 'active';
-                                    }
-                                    ?>" href="transactions">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-money-coins text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Transactions</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?php
-                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
-                                    $file_name = end($file_path);
-                                    $route = explode(".", $file_name)[0];
-                                    if ($route === 'wallets') {
-                                        echo 'active';
-                                    }
-                                    ?>" href="wallets">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-fat-add text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Wallets</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?php
-                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
-                                    $file_name = end($file_path);
-                                    $route = explode(".", $file_name)[0];
-                                    if ($route === 'kyc') {
-                                        echo 'active';
-                                    }
-                                    ?>" href="kyc">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-paper-diploma text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">KYC</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link <?php
-                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
-                                    $file_name = end($file_path);
-                                    $route = explode(".", $file_name)[0];
-                                    if ($route === 'payouts') {
-                                        echo 'active';
-                                    }
-                                    ?>" href="payouts">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-diamond text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Payouts</span>
-                </a>
-            </li>
-
             <!-- <li class="nav-item">
                 <a class="nav-link <?php
                                     $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
                                     $file_name = end($file_path);
                                     $route = explode(".", $file_name)[0];
-                                    if ($route === 'nutrition') {
+                                    if ($route === 'apply-for-transcript') {
                                         echo 'active';
                                     }
-                                    ?>" href="nutrition">
+                                    ?>" href="apply-for-transcript">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-satisfied text-success text-sm opacity-10"></i>
+                        <i class="ni ni-paper-diploma text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Nutrition</span>
+                    <span class="nav-link-text ms-1">Apply for Transcript</span>
                 </a>
-            </li>
+            </li> -->
+
             <li class="nav-item">
                 <a class="nav-link <?php
                                     $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
                                     $file_name = end($file_path);
                                     $route = explode(".", $file_name)[0];
-                                    if ($route === 'activities') {
+                                    if ($route === 'transcripts') {
                                         echo 'active';
                                     }
-                                    ?>" href="activities">
+                                    ?>" href="transcripts">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                        <i class="ni ni-books text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Activities</span>
+                    <span class="nav-link-text ms-1">Transcripts Applications</span>
                 </a>
-            </li> -->
+            </li>
         </ul>
     </div>
-    <div class="sidenav-footer mx-3" style='bottom:0'>
-        <div class="card card-plain shadow-none" id="sidenavCard">
-            <!-- <img class="w-50 mx-auto" src="assets/img/illustrations/icon-documentation.svg" alt="sidebar_illustration"> -->
-            <!-- <div class="card-body text-center p-3 w-100 pt-0">
+    <div class="sidenav-footer mx-3 ">
+        <!-- <div class="card card-plain shadow-none" id="sidenavCard">
+            <img class="w-50 mx-auto" src="assets/img/illustrations/icon-documentation.svg" alt="sidebar_illustration">
+            <div class="card-body text-center p-3 w-100 pt-0">
                 <div class="docs-info">
                     <h6 class="mb-0">Need help?</h6>
                     <p class="text-xs font-weight-bold mb-0">Call our HOT-LINE!</p>
                 </div>
-            </div> -->
+            </div>
         </div>
-        <!-- <a href="tel:+2349012345678" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">(+234) 901 234 5678</a> -->
+        <a href="tel:+2349012345678" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">(+234) 901 234 5678</a> -->
         <a class="btn btn-primary btn-sm mb-0 w-100" href="logout" type="button">Logout</a>
     </div>
 </aside>

@@ -140,8 +140,7 @@ include_once "included/head.php";
 
 
               <div class="table-responsive p-0">
-                <table
-                  class="table align-items-center mb-0">
+                <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
                       <th
@@ -154,25 +153,25 @@ include_once "included/head.php";
                       </th>
                       <th
                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Reason
+                        purpose
                       </th>
                       <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        class="text-end text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         Date
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    $select_transcripts = "SELECT * FROM transcripts WHERE user_id = '$user_id'";
+                    $select_transcripts = "SELECT * FROM transcripts WHERE user_id = '$user_id' LIMIT 10";
                     $query_transcripts = mysqli_query($con, $select_transcripts);
                     while ($get_transcripts = mysqli_fetch_assoc($query_transcripts)) :
                     ?>
                       <tr>
 
                         <td
-                          class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold"><?= $gettranscripts["blockchain_id"] ?></span>
+                          class="align-middle text-start">
+                          <span class="text-secondary text-xs font-weight-bold mx-3"><?= $get_transcripts["blockchain_id"] ?></span>
                         </td>
                         <td
                           class="align-middle text-sm">
@@ -182,12 +181,12 @@ include_once "included/head.php";
                             <span
                               class="badge badge-sm bg-gradient-success">Completed</span>
                           <?php
-                          elseif ($get_transactions["state"] == 'pending') :
+                          elseif ($get_transcripts["status"] == 'pending') :
                           ?>
                             <span
                               class="badge badge-sm bg-gradient-warning">Pending</span>
                           <?php
-                          elseif ($get_transactions["state"] == 'rejected') :
+                          elseif ($get_transcripts["status"] == 'rejected') :
                           ?>
                             <span
                               class="badge badge-sm bg-gradient-danger">Rejected</span>
@@ -200,49 +199,55 @@ include_once "included/head.php";
                           endif;
                           ?>
                         </td>
-                        <td
-                          class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold" id="reason<?= $get_transcripts["id"] ?>">
-                            <?= substr($get_transcripts["reason"], 0, 20) ?>
-                            <?php if (strlen($get_transcripts["reason"]) > 20) : ?>
+                        <td class="align-middle ">
+                          <span class="text-secondary text-xs font-weight-bold" id="purpose<?= $get_transcripts["id"] ?>">
+                            <?= substr($get_transcripts["purpose"], 0, 20) ?>
+                            <?php if (strlen($get_transcripts["purpose"]) > 20) : ?>
                               ...
-                              <span id="see-more<?= $get_transcripts["id"] ?>" style="cursor: pointer;">See more</span>
-                              <span id="full-reason<?= $get_transcripts["id"] ?>" style="display: none;"><?= $get_transcripts["reason"] ?><span id="see-less<?= $get_transcripts["id"] ?>" style="cursor: pointer;"> See less</span></span>
+                              <span id="see-more<?= $get_transcripts["id"] ?>" class='text-primary text-decoration-underline' style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#purpose-modal-<?= $get_transcripts["id"] ?>">See more</span>
                             <?php endif; ?>
                           </span>
 
-                          <script>
-                            document.getElementById('see-more<?= $get_transcripts["id"] ?>').addEventListener('click', function() {
-                              document.getElementById('reason<?= $get_transcripts["id"] ?>').style.display = 'none';
-                              document.getElementById('full-reason<?= $get_transcripts["id"] ?>').style.display = 'inline';
-                            });
-
-                            document.getElementById('see-less<?= $get_transcripts["id"] ?>').addEventListener('click', function() {
-                              document.getElementById('reason<?= $get_transcripts["id"] ?>').style.display = 'inline';
-                              document.getElementById('full-reason<?= $get_transcripts["id"] ?>').style.display = 'none';
-                            });
-                          </script>
-                        </td>
-                        <td
-                          class="align-middle text-center">
-                          <span
-                            class="text-secondary text-xs font-weight-bold"><?= date('l, F j, Y h:i A', strtotime($get_transcripts["datetime"])) ?></span>
-                        </td>
-                      </tr>
-                    <?php
-                    endwhile;
-                    ?>
-                  </tbody>
-                </table>
+                          <!-- Modal -->
+                          <div class="modal fade" tabindex='-1' id="purpose-modal-<?= $get_transcripts["id"] ?>" tabindex="-1" aria-labelledby="purpose-modal-label-<?= $get_transcripts["id"] ?>" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="purpose-modal-label-<?= $get_transcripts["id"] ?>">Full Purpose</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body word-wrap" style="max-width: 500px; overflow-y: auto;">
+                                  <?= $get_transcripts["purpose"] ?>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
               </div>
-
+              </td>
+              </td>
+              <td
+                class="align-middle text-end">
+                <span
+                  class="text-secondary text-xs font-weight-bold"><?= date('l, M j, Y h:i A', strtotime($get_transcripts["datetime"])) ?></span>
+              </td>
+              </tr>
+            <?php
+                    endwhile;
+            ?>
+            </tbody>
+            </table>
             </div>
+
           </div>
         </div>
       </div>
-      <?php
-      include_once "included/footer.php";
-      ?>
+    </div>
+    <?php
+    include_once "included/footer.php";
+    ?>
     </div>
   </main>
   <?php

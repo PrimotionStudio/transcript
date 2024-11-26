@@ -1,7 +1,7 @@
 <?php
 require_once "required/session.php";
 require_once "required/sql.php";
-const PAGE_TITLE = "Escrow - Admin Login";
+const PAGE_TITLE = "University Transcript Tracking System - Admin Login";
 require_once "func/login.php";
 include_once "included/head.php";
 ?>
