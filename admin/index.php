@@ -149,7 +149,7 @@ include_once "included/head.php";
                       </th>
                       <th
                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Purpose
+                        Details
                       </th>
                       <th
                         class="text-end text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -195,55 +195,67 @@ include_once "included/head.php";
                           endif;
                           ?>
                         </td>
+
                         <td class="align-middle ">
-                          <span class="text-secondary text-xs font-weight-bold" id="purpose<?= $get_transcripts["id"] ?>">
-                            <?= substr($get_transcripts["purpose"], 0, 20) ?>
-                            <?php if (strlen($get_transcripts["purpose"]) > 20) : ?>
-                              ...
-                              <span id="see-more<?= $get_transcripts["id"] ?>" class='text-primary text-decoration-underline' style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#purpose-modal-<?= $get_transcripts["id"] ?>">See more</span>
-                            <?php endif; ?>
-                          </span>
+                          <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#transcript-id-<?= $get_transcripts["blockchain_id"] ?>">
+                            Details
+                          </button>
 
                           <!-- Modal -->
-                          <div class="modal fade" tabindex='-1' id="purpose-modal-<?= $get_transcripts["id"] ?>" tabindex="-1" aria-labelledby="purpose-modal-label-<?= $get_transcripts["id"] ?>" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal fade" id="transcript-id-<?= $get_transcripts["blockchain_id"] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="purpose-modal-label-<?= $get_transcripts["id"] ?>">Full Purpose</h5>
+                                  <h5 class="modal-title" id="staticBackdropLabel"><?= $get_transcripts['blockchain_id'] ?></h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body word-wrap" style="max-width: 500px; overflow-y: auto;">
-                                  <?= $get_transcripts["purpose"] ?>
+                                <div class="modal-body">
+
+
+                                  <div class="modal-body">
+                                    <p class="mb-2">Name: <?php
+                                                          $user_id = $get_transcripts['user_id'];
+                                                          $select_user = "SELECT * FROM users WHERE id = '$user_id'";
+                                                          $query_user = mysqli_query($con, $select_user);
+                                                          $get_user = mysqli_fetch_assoc($query_user);
+                                                          echo $get_user['name'];
+                                                          ?></p>
+                                    <p class="mb-2">Matric Number: <?= $get_transcripts['matric'] ?></p>
+                                    <p class="mb-2">Faculty: <?= $get_transcripts['faculty'] ?></p>
+                                    <p class="mb-2">Department: <?= $get_transcripts['department'] ?></p>
+                                    <p class="mb-2">Degree: <?= $get_transcripts['degree'] ?></p>
+                                    <p class="mb-2">Purpose: <?= $get_transcripts['purpose'] ?></p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Understood</button>
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                               </div>
                             </div>
                           </div>
-              </div>
-              </td>
-              </td>
-              <td
-                class="align-middle text-end">
-                <span
-                  class="text-secondary text-xs font-weight-bold"><?= date('l, M j, Y h:i A', strtotime($get_transcripts["datetime"])) ?></span>
-              </td>
-              </tr>
-            <?php
+                        </td>
+                        <td
+                          class="align-middle text-end">
+                          <span
+                            class="text-secondary text-xs font-weight-bold"><?= date('l, M j, Y h:i A', strtotime($get_transcripts["datetime"])) ?></span>
+                        </td>
+                      </tr>
+                    <?php
                     endwhile;
-            ?>
-            </tbody>
-            </table>
-            </div>
+                    ?>
+                  </tbody>
+                </table>
+              </div>
 
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <?php
-    include_once "included/footer.php";
-    ?>
+      <?php
+      include_once "included/footer.php";
+      ?>
     </div>
   </main>
   <?php
