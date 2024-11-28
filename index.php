@@ -159,6 +159,10 @@ include_once "included/head.php";
                         class="text-end text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         Date
                       </th>
+                      <th
+                        class="text-end text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Action
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -213,6 +217,10 @@ include_once "included/head.php";
                           class="align-middle text-end">
                           <span
                             class="text-secondary text-xs font-weight-bold"><?= date('l, M j, Y h:i A', strtotime($get_transcripts["datetime"])) ?></span>
+                        </td>
+                        <td
+                          class="align-middle text-end">
+                          <a target='_blank' href="transcript?id=<?= $get_transcripts["id"] ?>" class="btn btn-primary">View</a>
                         </td>
                       </tr>
                     <?php

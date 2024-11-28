@@ -1,3 +1,17 @@
+<?php
+require_once "required/session.php";
+require_once "required/sql.php";
+require_once "required/validate.php";
+if (isset($_GET['id'])) {
+    $select_transcripts = "SELECT * FROM transcripts WHERE id='" . $_GET['id'] . "'";
+    $query_transcripts = mysqli_query($con, $select_transcripts);
+    $get_transcripts = mysqli_fetch_assoc($query_transcripts);
+} else {
+    header('Location: index');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,43 +85,39 @@
             </div> -->
             <div class="col-md-1"></div>
             <div class="col-md-5">
-                <p><strong>Name:</strong> Martins Okaniawon</p>
-                <p><strong>Address:</strong> 35 Wheel Street, Port-Harcourt, Rivers, 500221, Nigeria</p>
-                <p><strong>Phone:</strong> +2348149589572</p>
-                <p><strong>Email:</strong> student@example.com</p>
+                <p><strong>Name:</strong> <?= $get_user['name'] ?></p>
+                <p><strong>Phone:</strong> <?= $get_user['phone'] ?></p>
+                <p><strong>Email:</strong> <?= $get_user['email'] ?></p>
             </div>
             <div class="col-md-5">
-                <p><strong>Student ID:</strong> 125-35</p>
-                <p><strong>Date of Birth:</strong> 01-01-2004</p>
-                <p><strong>Termination Date:</strong> -</p>
-                <p><strong>Last Date of Attendance:</strong> -</p>
-                <p><strong>Status:</strong> ACTIVE</p>
+                <p><strong>Matriculation Number:</strong> <?= $get_transcripts['matric'] ?></p>
+                <p><strong>Faculty:</strong> <?= $get_transcripts['faculty'] ?></p>
+                <p><strong>Department:</strong> <?= $get_transcripts['department'] ?></p>
+                <p><strong>Degree:</strong> <?= $get_transcripts['degree'] ?></p>
             </div>
             <div class="col-md-1"></div>
         </div>
 
         <!-- Scores Table -->
-        <h5>Scores - SE Foundations <span class="validated-badge">Validated</span></h5>
+        <h5>Academics - <span class="validated-badge">Validated</span></h5>
         <table class="table table-striped table-custom">
             <thead>
                 <tr>
-                    <th>Month</th>
-                    <th>Duration</th>
-                    <th>Score</th>
+                    <th>Course</th>
+                    <th>Grade</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Month 08</td>
-                    <td>06/04/2023 to 02/06/2023</td>
-                    <td>168.02%</td>
-                </tr>
-                <tr>
-                    <td>Month 07</td>
-                    <td>01/02/2023 to 05/04/2023</td>
-                    <td>135.91%</td>
-                </tr>
-                <!-- Add other months here -->
+                <?php
+                $select_accepted_transcripts = "SELECT * FROM accepted_transcripts WHERE transcript_id = '" . $get_transcripts['id'] . "'";
+                $query_accepted_transcripts = mysqli_query($con, $select_accepted_transcripts);
+                while ($get_accepted_transcripts = mysqli_fetch_assoc($query_accepted_transcripts)) :
+                ?>
+                    <tr>
+                        <td><?= $get_accepted_transcripts['course'] ?></td>
+                        <td><?= $get_accepted_transcripts['grade'] ?></td>
+                    </tr>
+                <?php endwhile; ?>
             </tbody>
         </table>
 
@@ -116,9 +126,13 @@
         <div class="row mt-5">
             <div class="col-md-6">
                 <p><strong>School Official Signature:</strong></p>
-                <p>Marthe Von Middlesor</p>
+                <p><?php
+                    $select_admin = "SELECT * FROM admin WHERE id = '1'";
+                    $query_admin = mysqli_query($con, $select_admin);
+                    $get_admin = mysqli_fetch_assoc($query_admin);
+                    echo $get_admin['name']; ?></p>
                 <div class="signature-line"></div>
-                <p>Date: 24/11/2024</p>
+                <p>Date: <?= date('d/m/Y', strtotime($get_transcripts['date_issued'])); ?></p>
             </div>
         </div>
 

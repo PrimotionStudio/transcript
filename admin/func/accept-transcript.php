@@ -12,7 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_query($con, $insert_transcript)) $_SESSION["alert"] = "Transcript added successfully";
         else $_SESSION["alert"] = "Unable to add transcript";
     } else {
-        $update_transcript = "UPDATE transcripts SET status = 'completed' WHERE id = '$transcript_id'";
+        $date = date('Y-m-d');
+        $update_transcript = "UPDATE transcripts SET status = 'completed', date_issued='$date' WHERE id = '$transcript_id'";
         if (mysqli_query($con, $update_transcript)) $_SESSION["alert"] = "Transcript accepted successfully";
         else $_SESSION["alert"] = "Unable to update transcript";
         header("location: ../transcripts");
