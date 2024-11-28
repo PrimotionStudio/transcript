@@ -97,50 +97,49 @@ function formatTranscriptId(string $tnx_id): string
                                                             <span id="see-more<?= $get_transcripts["id"] ?>" class='text-primary text-decoration-underline' style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#purpose-modal-<?= $get_transcripts["id"] ?>">See more</span>
                                                         <?php endif; ?>
                                                     </span>
-
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" tabindex='-1' id="purpose-modal-<?= $get_transcripts["id"] ?>" tabindex="-1" aria-labelledby="purpose-modal-label-<?= $get_transcripts["id"] ?>" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="purpose-modal-label-<?= $get_transcripts["id"] ?>">Full Purpose</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body word-wrap" style="max-width: 500px; overflow-y: auto;">
-                                                                    <?= $get_transcripts["purpose"] ?>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                            </div>
-                            </td>
-                            </td>
-                            <td
-                                class="align-middle text-end">
-                                <span
-                                    class="text-secondary text-xs font-weight-bold"><?= date('l, M j, Y h:i A', strtotime($get_transcripts["datetime"])) ?></span>
-                            </td>
-                            </tr>
-                        <?php
+                                                </td>
+                                                <td
+                                                    class="align-middle text-end">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold"><?= date('l, M j, Y h:i A', strtotime($get_transcripts["datetime"])) ?></span>
+                                                </td>
+                                            </tr>
+                                        <?php
                                         endwhile;
-                        ?>
-                        </tbody>
-                        </table>
-                        </div>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+            include_once "included/footer.php";
+            ?>
+        </div>
+    </main>
+    <?php
+    $select_transcripts = "SELECT * FROM transcripts WHERE user_id = '$user_id' LIMIT 10";
+    $query_transcripts = mysqli_query($con, $select_transcripts);
+    while ($get_transcripts = mysqli_fetch_assoc($query_transcripts)) :
+    ?>
+        <!-- Modal -->
+        <div class="modal fade" tabindex='-1' id="purpose-modal-<?= $get_transcripts["id"] ?>" tabindex="-1" aria-labelledby="purpose-modal-label-<?= $get_transcripts["id"] ?>" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="purpose-modal-label-<?= $get_transcripts["id"] ?>">Full Purpose</h5>
+                    </div>
+                    <div class="modal-body">
+                        <?= $get_transcripts["purpose"] ?>
                     </div>
                 </div>
             </div>
         </div>
-        <?php
-        include_once "included/footer.php";
-        ?>
-        </div>
-    </main>
     <?php
+    endwhile;
     include_once "included/scripts.php";
     ?>
 </body>

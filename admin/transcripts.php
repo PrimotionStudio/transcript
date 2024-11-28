@@ -98,64 +98,6 @@ function formatTranscriptId(string $tnx_id): string
                                                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#transcript-id-<?= $get_transcripts["blockchain_id"] ?>">
                                                         Details
                                                     </button>
-
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="transcript-id-<?= $get_transcripts["blockchain_id"] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="staticBackdropLabel"><?= $get_transcripts['blockchain_id'] ?></h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-
-
-                                                                    <div class="modal-body">
-                                                                        <p class="mb-2">Name: <?php
-                                                                                                $user_id = $get_transcripts['user_id'];
-                                                                                                $select_user = "SELECT * FROM users WHERE id = '$user_id'";
-                                                                                                $query_user = mysqli_query($con, $select_user);
-                                                                                                $get_user = mysqli_fetch_assoc($query_user);
-                                                                                                echo $get_user['name'];
-                                                                                                ?></p>
-                                                                        <p class="mb-2">Matric Number: <?= $get_transcripts['matric'] ?></p>
-                                                                        <p class="mb-2">Faculty: <?= $get_transcripts['faculty'] ?></p>
-                                                                        <p class="mb-2">Department: <?= $get_transcripts['department'] ?></p>
-                                                                        <p class="mb-2">Degree: <?= $get_transcripts['degree'] ?></p>
-                                                                        <p class="mb-2">Purpose: <?= $get_transcripts['purpose'] ?></p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                        <button type="button" class="btn btn-primary">Understood</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- <span class="text-secondary text-xs font-weight-bold" id="purpose<?= $get_transcripts["id"] ?>">
-                                                        <?= substr($get_transcripts["purpose"], 0, 20) ?>
-                                                        <?php if (strlen($get_transcripts["purpose"]) > 20) : ?>
-                                                            ...
-                                                            <span id="see-more<?= $get_transcripts["id"] ?>" class='text-primary text-decoration-underline' style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#purpose-modal-<?= $get_transcripts["id"] ?>">See more</span>
-                                                        <?php endif; ?>
-                                                    </span>
-
-                                                    
-                                                    <div class="modal fade" tabindex='-1' id="purpose-modal-<?= $get_transcripts["id"] ?>" tabindex="-1" aria-labelledby="purpose-modal-label-<?= $get_transcripts["id"] ?>" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="purpose-modal-label-<?= $get_transcripts["id"] ?>">Full Purpose</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <p class=" word-wrap" style="max-width: 500px; overflow-y: auto;"><?= $get_transcripts["purpose"] ?></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class=" modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div> -->
                                                 </td>
                                                 <td
                                                     class="align-middle text-end">
@@ -195,6 +137,57 @@ function formatTranscriptId(string $tnx_id): string
         </div>
     </main>
     <?php
+    $select_transcripts = "SELECT * FROM transcripts LIMIT 10";
+    $query_transcripts = mysqli_query($con, $select_transcripts);
+    while ($get_transcripts = mysqli_fetch_assoc($query_transcripts)) :
+    ?>
+        <!-- Modal -->
+        <div class="modal fade" id="transcript-id-<?= $get_transcripts["blockchain_id"] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"><?= $get_transcripts['blockchain_id'] ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="modal-body">
+                            <p class="mb-2">Name: <?php
+                                                    $user_id = $get_transcripts['user_id'];
+                                                    $select_user = "SELECT * FROM users WHERE id = '$user_id'";
+                                                    $query_user = mysqli_query($con, $select_user);
+                                                    $get_user = mysqli_fetch_assoc($query_user);
+                                                    echo $get_user['name'];
+                                                    ?></p>
+                            <p class="mb-2">Matric Number: <?= $get_transcripts['matric'] ?></p>
+                            <p class="mb-2">Faculty: <?= $get_transcripts['faculty'] ?></p>
+                            <p class="mb-2">Department: <?= $get_transcripts['department'] ?></p>
+                            <p class="mb-2">Degree: <?= $get_transcripts['degree'] ?></p>
+                            <p class="mb-2">Purpose: <?= $get_transcripts['purpose'] ?></p>
+                            <hr>
+                            <?php
+                            $transcript_id = $get_transcripts['id'];
+                            $select_accepted_transcripts = "SELECT * FROM accepted_transcripts WHERE transcript_id = '$transcript_id'";
+                            $query_accepted_transcripts = mysqli_query($con, $select_accepted_transcripts);
+                            while ($get_accepted_transcripts = mysqli_fetch_assoc($query_accepted_transcripts)) {
+                            ?>
+                                <p class="mb-2">Course: <?= $get_accepted_transcripts['course'] ?></p>
+                                <p class="mb-2">Grade: <?= $get_accepted_transcripts['grade'] ?></p>
+                                <hr>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    endwhile;
     include_once "included/scripts.php";
     ?>
 </body>

@@ -12,7 +12,6 @@ if (isset($_GET['id'])) {
     header("Location: index.php");
     exit;
 }
-require_once "func/accept-transcript.php";
 include_once "included/head.php";
 ?>
 
@@ -62,18 +61,19 @@ include_once "included/head.php";
                 <div class="col-md-5 col-sm-12 mx-auto">
                     <div class="card shadow">
                         <div class="card-body">
-                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="create-goal">
-
+                            <form action="func/accept-transcript" method="post" id="create-goal">
+                                <input type="hidden" name="transcript_id" value="<?= $transcript_id ?>">
                                 <div class="form-group">
                                     <label for="course">Course</label>
-                                    <input type="text" class="form-control" id="course" name="course" required>
+                                    <input type="text" class="form-control" id="course" name="course">
                                 </div>
                                 <div class="form-group">
                                     <label for="grade">Grade</label>
-                                    <input type="text" class="form-control" id="grade" name="grade" required>
+                                    <input type="text" class="form-control" id="grade" name="grade">
                                 </div>
                                 <div class="form-group d-flex justify-content-between">
-                                    <button type='submit' value="add" class="btn btn-secondary">Add</button>
+                                    <input type="submit" name='add' value="Add" class="btn btn-secondary">
+
                                     <button type="submit" value='accept' class="btn btn-primary">Accept</button>
                                 </div>
                             </form>

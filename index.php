@@ -31,7 +31,7 @@ include_once "included/head.php";
                     <h5 class="font-weight-bolder">
 
                       <?php
-                      $select_total_transcripts = "SELECT * FROM transcripts WHERE id='$user_id'";
+                      $select_total_transcripts = "SELECT * FROM transcripts WHERE user_id='$user_id'";
                       $query_total_transcripts = mysqli_query($con, $select_total_transcripts);
                       echo mysqli_num_rows($query_total_transcripts);
                       ?>
@@ -58,7 +58,7 @@ include_once "included/head.php";
                     <h5 class="font-weight-bolder">
 
                       <?php
-                      $select_completed_transcripts = "SELECT * FROM transcripts WHERE id='$user_id' AND status = 'completed'";
+                      $select_completed_transcripts = "SELECT * FROM transcripts WHERE user_id='$user_id' AND status = 'completed'";
                       $query_completed_transcripts = mysqli_query($con, $select_completed_transcripts);
                       echo mysqli_num_rows($query_completed_transcripts);
                       ?>
@@ -84,7 +84,7 @@ include_once "included/head.php";
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Pending Transcript Applications</p>
                     <h5 class="font-weight-bolder">
                       <?php
-                      $select_pending_transcripts = "SELECT * FROM transcripts WHERE id='$user_id' AND status = 'pending'";
+                      $select_pending_transcripts = "SELECT * FROM transcripts WHERE user_id='$user_id' AND status = 'pending'";
                       $query_pending_transcripts = mysqli_query($con, $select_pending_transcripts);
                       echo mysqli_num_rows($query_pending_transcripts);
                       ?>
@@ -109,7 +109,7 @@ include_once "included/head.php";
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Rejected Transcript Applications</p>
                     <h5 class="font-weight-bolder">
                       <?php
-                      $select_rejected_transcripts = "SELECT * FROM transcripts WHERE id='$user_id' AND status = 'rejected'";
+                      $select_rejected_transcripts = "SELECT * FROM transcripts WHERE user_id='$user_id' AND status = 'rejected'";
                       $query_rejected_transcripts = mysqli_query($con, $select_rejected_transcripts);
                       echo mysqli_num_rows($query_rejected_transcripts);
                       ?>
@@ -208,49 +208,51 @@ include_once "included/head.php";
                             <?php endif; ?>
                           </span>
 
-                          <!-- Modal -->
-                          <div class="modal fade" tabindex='-1' id="purpose-modal-<?= $get_transcripts["id"] ?>" tabindex="-1" aria-labelledby="purpose-modal-label-<?= $get_transcripts["id"] ?>" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="purpose-modal-label-<?= $get_transcripts["id"] ?>">Full Purpose</h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body word-wrap" style="max-width: 500px; overflow-y: auto;">
-                                  <?= $get_transcripts["purpose"] ?>
-                                </div>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              </div>
-                            </div>
-                          </div>
-              </div>
-              </td>
-              </td>
-              <td
-                class="align-middle text-end">
-                <span
-                  class="text-secondary text-xs font-weight-bold"><?= date('l, M j, Y h:i A', strtotime($get_transcripts["datetime"])) ?></span>
-              </td>
-              </tr>
-            <?php
+                        </td>
+                        <td
+                          class="align-middle text-end">
+                          <span
+                            class="text-secondary text-xs font-weight-bold"><?= date('l, M j, Y h:i A', strtotime($get_transcripts["datetime"])) ?></span>
+                        </td>
+                      </tr>
+                    <?php
                     endwhile;
-            ?>
-            </tbody>
-            </table>
-            </div>
+                    ?>
+                  </tbody>
+                </table>
+              </div>
 
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php
+      include_once "included/footer.php";
+      ?>
+    </div>
+  </main>
+
+
+  <?php
+  $select_transcripts = "SELECT * FROM transcripts WHERE user_id = '$user_id' LIMIT 10";
+  $query_transcripts = mysqli_query($con, $select_transcripts);
+  while ($get_transcripts = mysqli_fetch_assoc($query_transcripts)) :
+  ?>
+    <!-- Modal -->
+    <div class="modal fade" tabindex='-1' id="purpose-modal-<?= $get_transcripts["id"] ?>" tabindex="-1" aria-labelledby="purpose-modal-label-<?= $get_transcripts["id"] ?>" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="purpose-modal-label-<?= $get_transcripts["id"] ?>">Full Purpose</h5>
+          </div>
+          <div class="modal-body">
+            <?= $get_transcripts["purpose"] ?>
           </div>
         </div>
       </div>
     </div>
-    <?php
-    include_once "included/footer.php";
-    ?>
-    </div>
-  </main>
   <?php
+  endwhile;
   include_once "included/scripts.php";
   ?>
 </body>

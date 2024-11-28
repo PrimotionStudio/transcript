@@ -1,5 +1,10 @@
 <?php
+
+require_once "../required/session.php";
+require_once "../required/sql.php";
+require_once "../required/validate.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $transcript_id = $_POST["transcript_id"];
     if (isset($_POST['add'])) {
         $course = $_POST["course"];
         $grade = $_POST["grade"];
@@ -7,10 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_query($con, $insert_transcript)) $_SESSION["alert"] = "Transcript added successfully";
         else $_SESSION["alert"] = "Unable to add transcript";
     } else {
-        $update_transcript = "UPDATE transcript SET status = 'completed' WHERE transcript_id = '$transcript_id'";
+        $update_transcript = "UPDATE transcripts SET status = 'completed' WHERE id = '$transcript_id'";
         if (mysqli_query($con, $update_transcript)) $_SESSION["alert"] = "Transcript accepted successfully";
         else $_SESSION["alert"] = "Unable to update transcript";
+        header("location: ../transcripts");
+        exit;
     }
-    header("location: " . $_SERVER["HTTP_REFERER"]);
-    exit;
 }
+header("location: " . $_SERVER["HTTP_REFERER"]);
+exit;
